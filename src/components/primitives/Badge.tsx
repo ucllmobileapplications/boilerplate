@@ -15,9 +15,22 @@ export function Badge({ label, variant = 'default' }: BadgeProps) {
 }
 
 const styles = StyleSheet.create({
-  base: {},
-  default: {},
-  success: {},
-  warning: {},
-  error: {},
+  base: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 999,
+  },
+  default: {
+    backgroundColor: '#e5e7eb',
+  },
+  success: {
+    backgroundColor: '#d1fae5',
+  },
+  warning: {
+    backgroundColor: '#fef3c7',
+  },
+  error: {
+    backgroundColor: '#fee2e2',
+  },
 });

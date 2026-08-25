@@ -31,12 +31,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@storybook/addon-essentials": "^8.4.7",
-    "@storybook/react": "^8.4.7",
-    "@storybook/react-vite": "^8.4.7",
+    "@storybook/react": "^10.5.10",
+    "@storybook/react-vite": "^10.5.10",
     "@types/react": "~18.3.12",
     "cypress": "^13.17.0",
-    "storybook": "^8.4.7",
+    "storybook": "^10.5.10",
     "typescript": "^5.3.3",
     "vite": "^5.4.11"
   },

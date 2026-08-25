@@ -34,12 +34,14 @@ export function Text({
 }
 
 const styles = StyleSheet.create({
-  base: {},
-  sm: {},
-  md: {},
-  lg: {},
-  xl: {},
-  normal: {},
-  medium: {},
-  bold: {},
+  base: {
+    color: '#111827',
+  },
+  sm: { fontSize: 12, lineHeight: 16 },
+  md: { fontSize: 14, lineHeight: 20 },
+  lg: { fontSize: 16, lineHeight: 24 },
+  xl: { fontSize: 20, lineHeight: 28 },
+  normal: { fontWeight: '400' },
+  medium: { fontWeight: '500' },
+  bold: { fontWeight: '700' },
 });
