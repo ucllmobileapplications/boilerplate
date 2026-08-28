@@ -5,15 +5,17 @@ import { Text } from '../../src/components/primitives/Text';
 import { EmptyState } from '../../src/components/primitives/EmptyState';
 import { StyledButton } from '../../src/components/StyledButton';
 import {Badge} from "@/components/primitives";
+import {colors} from "@/theme";
+import {StyleSheet} from "react-native";
 
 export default function HomeScreen() {
   const { user, logout } = useAuthStore();
 
   return (
-    <Screen padding="lg">
+    <Screen padding="lg" backgroundColor={colors.background}>
       <Stack gap="lg">
         <Text size="xl" weight="bold">
-          {user !== null ? `Welcome, ${user.name}` : 'Welcome'}
+          {user !== null ? `Welcome, ${user.email}` : 'Welcome'}
         </Text>
         <Badge label={'Succes badge'} variant={"success"} />
         <EmptyState
@@ -25,4 +27,5 @@ export default function HomeScreen() {
     </Screen>
   );
 }
+
 

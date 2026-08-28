@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useAuthStore } from '../src/state/useAuthStore';
 import { InputField } from '../src/components/primitives/InputField';
 import { StyledButton } from '../src/components/StyledButton';
 import { Stack } from '../src/components/primitives/Stack';
-import { Text } from '../src/components/primitives/Text';
+import { colors, spacing } from '../src/theme';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -19,40 +19,72 @@ export default function LoginScreen() {
       await login(email, password);
       router.replace('/');
     } catch {
-      setError('Login failed. Check your credentials.');
+      setError('Invalid email or password.');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Stack gap="lg" padding="lg">
-        <Text size="xl" weight="bold" align="center">Welcome back</Text>
-        <InputField
-          label="Email"
-          value={email}
-          onChangeText={setEmail}
-          placeholder="you@example.com"
-          testID="email-input"
-        />
-        <InputField
-          label="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          testID="password-input"
-          error={error !== '' ? error : undefined}
-        />
-        <StyledButton
-          label="Log in"
-          onPress={handleLogin}
-          isLoading={isLoading}
-          testID="login-button"
-        />
-      </Stack>
-    </View>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <View style={styles.card}>
+        <Stack gap="lg">
+          <Stack gap="sm">
+            <Text style={styles.title}>Welcome back</Text>
+            <Text style={styles.subtitle}>Sign in to continue</Text>
+          </Stack>
+          <InputField
+            label="Email"
+            value={email}
+            onChangeText={setEmail}
+            placeholder="you@example.com"
+            testID="email-input"
+          />
+          <InputField
+            label="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            testID="password-input"
+            error={error !== '' ? error : undefined}
+          />
+          <StyledButton
+            label="Log in"
+            onPress={handleLogin}
+            isLoading={isLoading}
+            testID="login-button"
+          />
+        </Stack>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.lg,
+  },
+  card: {
+    width: '100%',
+    maxWidth: 400,
+    backgroundColor: colors.surface,
+    borderRadius: 16,
+    padding: spacing.xxl,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
 });
